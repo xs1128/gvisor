@@ -2629,7 +2629,7 @@ func (l *Loader) portForward(opts *sentryapi.PortForwardOpts) error {
 	pair := pf.ProxyPair{To: fdConn}
 
 	switch l.root.conf.Network {
-	case config.NetworkSandbox:
+	case config.NetworkSandbox, config.NetworkNone:
 		stack := l.k.RootNetworkNamespace().Stack().(*netstack.Stack).Stack
 		nsConn, err := pf.NewNetstackConn(stack, opts.Port)
 		if err != nil {

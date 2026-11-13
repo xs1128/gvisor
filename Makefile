@@ -455,6 +455,8 @@ portforward-tests: load-basic_redis load-basic_nginx $(RUNTIME_BIN)
 	@$(call sudo,test/root:portforward_test,--runtime=$(RUNTIME) -test.v $(ARGS))
 	@$(call install_runtime,$(RUNTIME),--network=host)
 	@$(call sudo,test/root:portforward_test,--runtime=$(RUNTIME) -test.v $(ARGS))
+	@$(call install_runtime,$(RUNTIME),--network=none)
+	@$(call sudo,test/root:portforward_test,--runtime=$(RUNTIME) -test.v $(ARGS))
 .PHONY: portforward-test
 
 POSTURE_TEST_ARGS := -test.run=TestSandboxPosture -test.v
